@@ -1,0 +1,154 @@
+@import '../theme-variables.scss';
+
+mat-card {
+  margin-top: 20px !important;
+}
+*:focus {
+  outline: none;
+}
+
+%font-roboto {
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 18px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+}
+
+.warning_amber {
+  color: #13a48e;
+  font-size: 22px;
+}
+
+:host ::ng-deep .mat-radio-outer-circle {
+  border-width: 1px;
+}
+
+.info {
+  color: #007dba;
+  vertical-align: middle;
+}
+
+:host
+  ::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: $chip-default-border-color;
+  border-width: 1px;
+}
+
+:host ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  color: $chip-default-border-color;
+  background-color: $chip-default-border-color;
+}
+
+:host
+  ::ng-deep
+  .mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element {
+  background-color: $chip-default-border-color;
+}
+
+:host ::ng-deep .mat-radio-button {
+  margin-bottom: 5px;
+  margin-right: 10px;
+  @extend %font-roboto;
+}
+
+:host::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px !important;
+}
+
+.form-container {
+  margin-top: 2px;
+  margin-left: 15px;
+}
+
+.image {
+  padding-right: 5px;
+  margin-top: 10px;
+}
+
+hr {
+  width: 50%;
+}
+
+.question {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+// .next-button-container {
+//   display: flex;
+//   justify-content: left;
+//   align-items: center;
+//   margin: 0;
+// }
+
+.chip-control-section {
+  margin-left: 5px;
+}
+
+.label-container {
+  margin-top: 10px;
+  display: flex;
+  margin-bottom: 10px;
+  @extend %font-roboto;
+  .trail-qa-label {
+    text-align: left;
+  }
+
+  .trailQANumbering {
+    padding-right: 4px;
+  }
+}
+
+mat-divider {
+  margin-top: 15px;
+}
+
+.icon {
+  vertical-align: middle;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
+  width: 133.33333%;
+}
+
+.alert {
+  margin-top: 5px;
+  font-family: RocketSans;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+}
+
+:host::ng-deep .mat-form-field-prefix,
+.mat-form-field-suffix {
+  white-space: nowrap;
+  flex: none;
+  position: unset;
+}
+
+.mat-group-divider {
+  border-top-width: 2px;
+  border-top-color: darkgray;
+}
+
+:host::ng-deep .mat-form-field-flex {
+  width: 200px;
+}

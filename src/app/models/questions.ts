@@ -2,14 +2,13 @@ import { INextStep } from './nextStep';
 import { IQuestionOption } from './questionOption';
 
 export interface IQuestion {
-    key: string;
-    label: string;
+    key: string | null;
+    label: string | null;
     required: boolean;
-    controlType: string;
-    options: IQuestionOption[];
-    reasonForAsking: string;
-    placeholder: string;
-    group: string;
-    nextSteps: INextStep[];
-    value: string[];
+    controlType: string | null;
+    options: IQuestionOption[] | null;
+    placeholder: string | null;
+    group: string | null;
+    nextSteps?: INextStep[] | null;
+    value: string[] | null;
 }

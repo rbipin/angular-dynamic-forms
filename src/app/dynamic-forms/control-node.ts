@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { IQuestion } from 'src/app/models/question';
+import { IQuestion } from '../models/questions';
 import { INode } from './node';
 
 export class ControlNode implements INode {
@@ -80,7 +80,7 @@ export class ControlNode implements INode {
     }
     getChildForRelation(relationship: string): INode[] {
         if (this.relationship.size === 0) {
-            return;
+            return null;
         }
         return this.relationship.get(relationship);
     }

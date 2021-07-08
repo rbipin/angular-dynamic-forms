@@ -4,7 +4,6 @@ import { INode } from './node';
 export class ControlMap {
     subFormGroup: FormGroup = null;
     multipleInputLabel: string;
-    allowMultipleInput = false;
     private nodeList: Map<string, INode> = new Map();
     private parentNodeList: Map<string, INode> = new Map();
     readonly mapUId: string;
@@ -34,9 +33,9 @@ export class ControlMap {
         this.onRemove = removeFn;
     }
 
-    addNode(node: INode) {
+    addNode(node: INode): void {
         if (this.nodeList.has(node.key)) {
-            return null;
+            return;
         }
         this.nodeList.set(node.key, node);
         this.onAdd(this.subFormGroup, node, this.mapUId);

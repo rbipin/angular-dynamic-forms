@@ -1,0 +1,6 @@
+<button mat-icon-button class="rating-button" *ngFor="let rating of numberOfRating();index as i" [id]="'star_'+i"
+  (click)="onClick(i+1)" matTooltipPosition="above">
+  <mat-icon>
+    {{showIcon(i)}}
+  </mat-icon>
+</button>

@@ -1,1 +1,113 @@
-<p>dynamic-forms works!</p>
+<mat-card>
+  <form [formGroup]="questionFormArray">
+    <div *ngFor="let subGroupForm of questionFormArray['controls'] | keyvalue; index as groupIndex">
+      <mat-divider class="mat-group-divider" *ngIf="groupIndex > 0"></mat-divider>
+      <!--Sub Group or sub container-->
+      <div [formGroup]="subGroupForm.value" class="flex flex-col">
+        <!--Each control actually, some controls may be a collection so controls hence it is put in a group of its own
+          some group may have multiple contols while other may have only one control-->
+        <ng-container *ngFor="let node of formArrayMap.get(subGroupForm.key).getAll(); index as nodeIndex">
+          <!--Question Label-->
+          <div class="flex-grow">
+            <div class="label-container">
+              <span class="trailQANumbering">{{nodeIndex+1}}.</span>
+              <span class="trail-qa-label">{{node.label}}</span>
+            </div>
+          </div>
+          <div>
+            <div class="grid grid-cols-2 gap-2">
+              <ng-container *ngFor="let question of node.questions; index as questionIndex">
+                <div [ngSwitch]="question.controlType">
+                  <!--Text box-->
+                  <div *ngSwitchCase="'textbox'">
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{question.placeholder}}
+                      </mat-label>
+                      <input matInput [placeholder]="question.placeholder"
+                        [formControl]="node.formControls.get(question.key)" [id]="question.key" [readonly]="isDisabled">
+                    </mat-form-field>
+                  </div>
+                  <!--Radio button-->
+                  <div *ngSwitchCase="'radio'">
+                    <div class="form-container">
+                      <mat-radio-group [formControl]="$any(node.formControls.get(question.key))"
+                        [disabled]="isDisabled">
+                        <ng-container *ngFor="let opt of question.options">
+                          <div class="flex-initial">
+                            <mat-radio-button [value]="opt.key"
+                              (change)='onRadioButtonClick(subGroupForm.key, $event, node)'>
+                              {{opt.value}}</mat-radio-button>
+                          </div>
+                        </ng-container>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                  <!--Text Box Date Field-->
+                  <div *ngSwitchCase="'textbox-date'">
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{question.placeholder}}
+                      </mat-label>
+                      <input matInput [matDatepicker]="picker" [formControl]="$any(node.formControls.get(question.key))"
+                        [id]="question.key" [max]="maxDate" [readonly]="isDisabled" placeholder="MM/DD/YYYY"
+                        appDateInput>
+                      <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="isDisabled">
+                      </mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <!--Text Box with Numeric format-->
+                  <div *ngSwitchCase="'star-rating'">
+                    <app-star-rating [rating]="0" [max]="5"></app-star-rating>
+                  </div>
+
+                  <!--Text Box with Numeric format-->
+                  <div *ngSwitchCase="'textbox-numeric'">
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{question.placeholder}}
+                      </mat-label>
+                      <input matInput [placeholder]="question.placeholder"
+                        [formControl]="$any(node.formControls.get(question.key))" [id]="question.key"
+                        [readonly]="isDisabled">
+                    </mat-form-field>
+                  </div>
+                  <!--Text Box $USD format-->
+                  <div *ngSwitchCase="'textbox-usd'">
+                    <mat-form-field appearance="outline" class="currency-input-field">
+                      <mat-label>{{question.placeholder}}
+                      </mat-label>
+                      <span matPrefix *ngIf="node.formControls.get(question.key).value !== ''">$&nbsp;</span>
+                      <input matInput [placeholder]="question.placeholder"
+                        [formControl]="$any(node.formControls.get(question.key))" [id]="question.key"
+                        [readonly]="isDisabled" appUSDInput>
+                    </mat-form-field>
+                  </div>
+                  <!--Drop down-->
+                  <div *ngSwitchCase="'dropdown'">
+                    <mat-form-field appearance="outline">
+                      <mat-label>{{question.placeholder}}</mat-label>
+                      <mat-select [formControl]="$any(node.formControls.get(question.key))" [id]="question.key"
+                        [disabled]="isDisabled" (selectionChange)="onDropdownSelection(subGroupForm.key, $event, node)">
+                        <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <!--Next button -->
+          <div *ngIf="node.showNextButton" class="flex-initial">
+            <button mat-flat-button #nextButton color="primary" type="button" [disabled]="isNextButtonDisabled(node)"
+              (click)='handleNextButtonClick(subGroupForm.key, node, nextButton)'>
+              Next</button>
+          </div>
+          <!--Divider-->
+          <br>
+          <hr />
+        </ng-container>
+      </div>
+    </div>
+  </form>
+</mat-card>
+<!--Entire dynamic forms, top level container-->

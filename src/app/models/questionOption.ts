@@ -1,5 +1,5 @@
 export class IQuestionOption {
-    key: string;
-    value: string;
-    resetOptions: boolean;
+    key?: string;
+    value?: string;
+    resetOptions?: boolean;
 }

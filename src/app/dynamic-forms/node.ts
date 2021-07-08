@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { IQuestion } from '../models/qu';
+import { IQuestion } from '../models/questions';
 
 export interface INode {
     key: string;
