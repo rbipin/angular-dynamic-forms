@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { IQuestion } from '../models/questions';
 import { INode } from './node';
 
@@ -35,13 +35,13 @@ export class ControlNode implements INode {
         }
         return this.children.size;
     }
-    formControls: FormGroup;
+    formControls: UntypedFormGroup;
     label: string;
     showNextButton: boolean;
     parent: INode;
     children: Map<string, INode> = new Map();
     relationship: Map<string, INode[]> = new Map();
-    constructor(key: string, formGroup: FormGroup, formLabel: string, parentNode: INode = null) {
+    constructor(key: string, formGroup: UntypedFormGroup, formLabel: string, parentNode: INode = null) {
         this.key = key;
         this.formControls = formGroup;
         this.label = formLabel;

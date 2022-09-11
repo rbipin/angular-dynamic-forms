@@ -1,8 +1,8 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { INode } from './node';
 
 export class ControlMap {
-    subFormGroup: FormGroup = null;
+    subFormGroup: UntypedFormGroup = null;
     multipleInputLabel: string;
     private nodeList: Map<string, INode> = new Map();
     private parentNodeList: Map<string, INode> = new Map();

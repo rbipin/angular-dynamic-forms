@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { IQuestion } from '../models/questions';
 
 export interface INode {
@@ -7,7 +7,7 @@ export interface INode {
     questions: IQuestion[];
     isGroup: boolean;
     readonly uid: string;
-    formControls: FormGroup;
+    formControls: UntypedFormGroup;
     readonly label: string;
     showNextButton: boolean;
     parent: INode;

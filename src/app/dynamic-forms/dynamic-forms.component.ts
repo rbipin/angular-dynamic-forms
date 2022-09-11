@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { QuestionAnswers } from './questionAnswers';
 import { INode } from './node';
@@ -31,11 +31,11 @@ export class DynamicFormsComponent implements OnInit {
   maxDate = new Date();
   isDisabled = false;
   resetOptions: Map<string, string> = new Map();
-  questionFormArray: FormGroup;
+  questionFormArray: UntypedFormGroup;
   formArrayMap: Map<string, ControlMap> = new Map();
 
   constructor(
-    private formbuilder: FormBuilder,
+    private formbuilder: UntypedFormBuilder,
     private dataSvc: DataServiceService
   ) {
     this.trailAnswers = null
@@ -145,13 +145,13 @@ export class DynamicFormsComponent implements OnInit {
     return this.formbuilder.group(formGroups);
   }
 
-  initQuestionsFormArray(trailQuestionForm: FormGroup) {
+  initQuestionsFormArray(trailQuestionForm: UntypedFormGroup) {
     return this.formbuilder.group({
       questionsFormArray: this.formbuilder.array([trailQuestionForm]),
     });
   }
 
-  initQuestionsGroupFormArray(trailQuestionGroup: FormGroup[]) {
+  initQuestionsGroupFormArray(trailQuestionGroup: UntypedFormGroup[]) {
     return this.formbuilder.group({
       questionsFormArray: this.formbuilder.array([...trailQuestionGroup]),
     });
@@ -343,7 +343,7 @@ export class DynamicFormsComponent implements OnInit {
   }
 
   toFormGroup(questionsGroup: IQuestion[]): INode {
-    let controls: FormGroup = null;
+    let controls: UntypedFormGroup = null;
     let label = '';
     let newNode: INode;
     let allQuestionsForGroup: IQuestion[] = [];
@@ -365,7 +365,7 @@ export class DynamicFormsComponent implements OnInit {
         allQuestionsForGroup.push(question);
         const control = this.createFormControl(question);
         controlFg[question.key] = control;
-        controls = new FormGroup(controlFg);
+        controls = new UntypedFormGroup(controlFg);
       } else {
         // For form group with grouped controls
         allQuestionsForGroup = questionsGroup.filter(
@@ -384,7 +384,7 @@ export class DynamicFormsComponent implements OnInit {
     return newNode;
   }
 
-  createGroupControls(questions: IQuestion[]): FormGroup {
+  createGroupControls(questions: IQuestion[]): UntypedFormGroup {
     if (questions == null || questions.length === 0) {
       return null;
     }
@@ -393,7 +393,7 @@ export class DynamicFormsComponent implements OnInit {
       const control = this.createFormControl(question);
       controls[question.key] = control;
     }
-    return new FormGroup(controls);
+    return new UntypedFormGroup(controls);
   }
 
   createFormControl(question: IQuestion) {
@@ -413,7 +413,7 @@ export class DynamicFormsComponent implements OnInit {
           break;
       }
     }
-    return new FormControl({ value: answer, disabled: this.isDisabled }, validatorList);
+    return new UntypedFormControl({ value: answer, disabled: this.isDisabled }, validatorList);
   }
 
   private createControlValidators(question: IQuestion): ValidatorFn[] {
@@ -453,12 +453,12 @@ export class DynamicFormsComponent implements OnInit {
     this.formArrayMap.delete(mapId);
   }
 
-  private onAdd = (subGroup: FormGroup, node: INode, mapId: string) => {
+  private onAdd = (subGroup: UntypedFormGroup, node: INode, mapId: string) => {
     const graph = this.formArrayMap.get(mapId);
     if (subGroup === null) {
       const control: any = {};
       control[node.key] = node.formControls; // this is one or more form control
-      subGroup = new FormGroup(control); // this is a sub group, a container for set of controls
+      subGroup = new UntypedFormGroup(control); // this is a sub group, a container for set of controls
       graph.subFormGroup = subGroup;
     } else {
       subGroup.addControl(node.key, node.formControls);
@@ -474,7 +474,7 @@ export class DynamicFormsComponent implements OnInit {
     }
   }
 
-  private onRemove = (subGroup: FormGroup, node: INode, mapId: string) => {
+  private onRemove = (subGroup: UntypedFormGroup, node: INode, mapId: string) => {
     const graph = this.formArrayMap.get(mapId);
     if (!graph.hasNodes) {
       this.formArrayMap.delete(mapId);

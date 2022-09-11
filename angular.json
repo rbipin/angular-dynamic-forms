@@ -116,8 +116,9 @@
       }
     }
   },
-  "defaultProject": "angular-dynamic-forms",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
