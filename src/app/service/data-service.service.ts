@@ -186,7 +186,7 @@ export class DataServiceService {
           required: true,
           controlType: 'textbox-usd',
           options: null,
-          placeholder: 'Country',
+          placeholder: 'Income',
           group: null,
           nextSteps: [
             {
@@ -222,7 +222,7 @@ export class DataServiceService {
           group: null,
           nextSteps: null,
           value: null
-        },
+        }
       ],
       answers: null
     };
