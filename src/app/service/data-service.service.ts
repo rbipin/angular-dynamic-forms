@@ -191,38 +191,262 @@ export class DataServiceService {
           nextSteps: [
             {
               value: '',
-              nextQuestionId: ['Satisfaction']
+              nextQuestionId: ['recommendtoothers']
             }
           ],
           value: null
         },
         {
-          key: 'Satisfaction',
-          label: 'How satisfied are you with the product?',
+          key: 'recommendtoothers',
+          label: 'Would you recommend this to others?',
           required: true,
           controlType: 'dropdown',
           options: [
             {
-              key: 'NotSatisfied',
-              value: 'Not Satisfied',
+              key: 'yes',
+              value: 'Yes',
               resetOptions: false
             },
             {
-              key: 'Satisfied',
-              value: 'Satisfied',
+              key: 'no',
+              value: 'No',
               resetOptions: false
             },
             {
-              key: 'HighlySatisfied',
-              value: 'Highly Satisfied',
+              key: 'maybe',
+              value: 'May be',
               resetOptions: false
             }
           ],
-          placeholder: 'Satisfaction',
+          placeholder: 'Recommendation',
+          group: null,
+          nextSteps: [{
+            value: '',
+            nextQuestionId: ['howdidyouhear']
+          }],
+          value: null
+        },
+        {
+          key: 'howdidyouhear',
+          label: 'How did you hear about us?',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'socialmedia',
+              value: 'Social Media',
+              resetOptions: false
+            },
+            {
+              key: 'television',
+              value: 'Television',
+              resetOptions: false
+            },
+            {
+              key: 'searchengine',
+              value: 'Search Engine',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
+          group: null,
+          nextSteps: [
+            {
+              value: 'socialmedia',
+              nextQuestionId: ['socialmedia']
+            },
+            {
+              value: 'television',
+              nextQuestionId: ['television']
+            },
+            {
+              value: 'newspaper',
+              nextQuestionId: ['newspaper']
+            },
+            {
+              value: 'searchengine',
+              nextQuestionId: ['searchengine']
+            }
+          ],
+          value: null
+        },
+        {
+          key: 'socialmedia',
+          label: 'Which Social Media?',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'fb',
+              value: 'Facebook',
+              resetOptions: false
+            },
+            {
+              key: 'twitter',
+              value: 'Twitter',
+              resetOptions: false
+            },
+            {
+              key: 'linkedin',
+              value: 'LinkedIn',
+              resetOptions: false
+            },
+            {
+              key: 'instagram',
+              value: 'Instagram',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
+          group: null,
+          nextSteps: [
+            {
+              value: '',
+              nextQuestionId: ['device']
+            }
+          ],
+          value: null
+        },
+        {
+          key: 'device',
+          label: 'Which device do you use?',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'mobile',
+              value: 'Mobile',
+              resetOptions: false
+            },
+            {
+              key: 'ipad',
+              value: 'Ipad',
+              resetOptions: false
+            },
+            {
+              key: 'laptop',
+              value: 'Laptop',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
+          group: null,
+          nextSteps: null,
+          value: null
+        },
+        {
+          key: 'television',
+          label: 'Which television medium',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'localchannel',
+              value: 'Local',
+              resetOptions: false
+            },
+            {
+              key: 'nationaltelevison',
+              value: 'National Televison',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
+          group: null,
+          nextSteps: [
+            {
+              value: 'localchannel',
+              nextQuestionId: ['localchannel']
+            },
+            {
+              value: 'nationaltelevison',
+              nextQuestionId: ['nationaltelevison']
+            }
+          ],
+          value: null
+        },
+        {
+          key: 'localchannel',
+          label: 'Which Local Channel?',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'abclocal',
+              value: 'ABC Local Channel',
+              resetOptions: false
+            },
+            {
+              key: 'statelocalchannel',
+              value: 'State Local Channel',
+              resetOptions: false
+            },
+            {
+              key: 'applenews',
+              value: 'Apple News',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
+          group: null,
+          nextSteps: null,
+          value: null
+        },
+        {
+          key: 'nationaltelevison',
+          label: 'Which National Television?',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'foxnews',
+              value: 'Fox News',
+              resetOptions: false
+            },
+            {
+              key: 'cnbc',
+              value: 'CNBC',
+              resetOptions: false
+            },
+            {
+              key: 'bbc',
+              value: 'BBC',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
+          group: null,
+          nextSteps: null,
+          value: null
+        },
+        {
+          key: 'searchengine',
+          label: 'Which Search engine?',
+          required: true,
+          controlType: 'radio',
+          options: [
+            {
+              key: 'google',
+              value: 'Google',
+              resetOptions: false
+            },
+            {
+              key: 'yahoo',
+              value: 'Yahoo',
+              resetOptions: false
+            },
+            {
+              key: 'bing',
+              value: 'Bing',
+              resetOptions: false
+            }
+          ],
+          placeholder: '',
           group: null,
           nextSteps: null,
           value: null
         }
+
       ],
       answers: null
     };
